@@ -1,6 +1,10 @@
 require 'gosu'
 require_relative 'menu.rb'
 require_relative 'menuitem.rb'
+require_relative 'cptn_ruby'
+require_relative 'credits'
+require_relative 'Map_creation'
+require_relative 'commandes'
 
 class Main < Gosu::Window
 	def initialize
@@ -10,11 +14,10 @@ class Main < Gosu::Window
 		y = self.height  / 2 - 100
 		lineHeight = 50
 		self.caption = "Space Miner"
-		items = Array["lancerPartie", "credits", "quitter"]
-		actions = Array[lambda { }, lambda {
-			@menu.add_item(Gosu::Image.new(self, "images/item.png", false), x, y, 1, lambda { })
-			y += lineHeight
-		}, lambda { self.close }]
+		items = Array["lancerPartie", "credits", "commandes", "quitter"]
+		actions = Array[lambda { 
+			Map_creation.new
+			CptnRuby.new.show }, lambda {Credits.new.show}, lambda {Commandes.new.show}, lambda { self.close }]
 		@menu = Menu.new(self)
 		for i in (0..items.size - 1)
 			@menu.add_item(Gosu::Image.new(self, "images/#{items[i]}.png", false), x, y, 1, actions[i], Gosu::Image.new(self, "images/#{items[i]}_hover.png", false))
