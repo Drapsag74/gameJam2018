@@ -106,7 +106,7 @@ class Player
   end
 
   def y_center_of_mass
-    @y + @cur_image.height / 2
+    @y + @cur_image.height / 4
   end
 
 
