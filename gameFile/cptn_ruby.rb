@@ -108,7 +108,7 @@ class CptnRuby < (Example rescue Gosu::Window)
 end
 
 def update_items
-  unless @items.size >= @cptn.score + 50
+  unless @items.size >= @cptn.score + 100
     (1..10).each do
       r = rand
       if r < 0.035
